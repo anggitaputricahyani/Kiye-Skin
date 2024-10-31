@@ -8,9 +8,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'E5E1DA',
+        primary: '#E5E1DA', // Tambahkan tanda # untuk warna hex
+        secondary: '#AAD7D9', // Mengganti warna dengan nama `secondary` agar lebih jelas
       },
     },
   },
   plugins: [],
-}
+};
