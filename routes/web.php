@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\PageController;
+use App\Http\Controllers\AuthController; 
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +18,26 @@ use App\Http\Controllers\Client\PageController;
 |
 */
 
-Route::get('/', [PageController::class, 'homepage']);
+
+
+Route::get('/', function () {
+    return view('client.dashboard.homepage'); 
+});
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login'); 
+
+Route::get('/client.dashboard.homepage', [DashboardController::class, 'index'])->name('homepage');
+
+
+Route::get('/register', [RegisterController::class, 'showRegisterForm']);
+Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register.form');
+
+
+
+
+
+
 
 Route::get('/about', function () {
     return view('about');
@@ -31,5 +54,5 @@ Route::get('/admin-dashboard/menu', function () {
 Route::get('/store', [PageController::class, 'store']);
 
 Route::get('/store', function () {
-    return view('store');
+    return view('client.dashboard.store');
 });
