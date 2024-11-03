@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="flex flex-col h-screen" style="background: linear-gradient(to right, #92C7CF, white);">
-    <div class="flex w-[700px] bg-blue rounded-lg shadow-lg overflow-hidden mx-auto my-auto">
+    <div class="flex w-[800px] bg-blue-40 border-2 border-white rounded-lg shadow-lg overflow-hidden mx-auto my-auto">
         <!-- Left Side (Login Form) -->
         <div class="w-1/2 p-8 flex flex-col items-center">
             <!-- Home Icon and Title Centered -->
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <footer class="bg-grey text-white text-center py-4 mt-4">
+    <footer class="bg-gray-800 text-white text-center py-4 mt-4">
         <p>&copy; 2024 Your Company Name. All rights reserved.</p>
         <p><a href="#" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="#" class="text-blue-400 hover:underline">Terms of Service</a></p>
     </footer>

@@ -176,7 +176,7 @@
     </section>
 
  <!-- Footer -->
- <footer class="bg-[#92C7CF] text-white py-4">
+ <footer class="bg-gray-800 text-white py-4">
   <div class="container mx-auto text-center">
     <p class="text-sm">&copy; 2024 Nama Website. All rights reserved.</p>
     <p class="text-sm mt-1">Dibuat dengan <span class="text-red-500">❤</span> oleh Tim Kami</p>
