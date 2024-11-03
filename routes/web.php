@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Client\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [PageController::class, 'homepage']);
 
 Route::get('/about', function () {
     return view('about');
@@ -29,6 +28,8 @@ Route::get('/admin-dashboard/menu', function () {
     return view('admin.dashboard.menu.tes');
 });
 
-Route::get('/', [pagecontroller::class, 'homepage']);
+Route::get('/store', [PageController::class, 'store']);
 
-Route::get('/store', [pagecontroller::class, 'store']);
+Route::get('/store', function () {
+    return view('store');
+});

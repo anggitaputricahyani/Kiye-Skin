@@ -42,7 +42,7 @@
     <!-- Hero Section -->
     <section id="home" class="pt-24 h-screen flex items-center justify-center text-center text-white relative">
         <!-- Background Image -->
-        <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('{{ asset('img/gambar200.jpg') }}'); filter: brightness(0.5);"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('{{ asset('assets/img/gambar200.jpg') }}'); filter: brightness(0.5);"></div>
 
         <!-- Konten Hero -->
         <div class="relative z-10">
@@ -63,7 +63,7 @@
             <!-- Card Produk -->
             <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
+                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
@@ -79,7 +79,7 @@
 
             <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
+                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
@@ -95,7 +95,7 @@
 
             <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
+                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
@@ -111,7 +111,7 @@
 
             <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
+                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
@@ -127,7 +127,7 @@
 
             <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
+                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">

@@ -23,7 +23,7 @@
       <div class="hidden md:flex space-x-6 text-xl">
         <a href="#" class="text-[#2e94a4] hover:text-[#46e6ff]">Home</a>
         <a href="#about-us" class="text-[#2e94a4] hover:text-[#46e6ff]">About Us</a>
-        <a href="#" class="text-[#2e94a4] hover:text-[#46e6ff]">Store</a>
+        <a href="{{ url('/store') }}" class="text-[#2e94a4] hover:text-[#46e6ff]">Store</a>
         <a href="#" class="text-[#2e94a4] hover:text-[#46e6ff] font-bold">Cek Kulit</a>
         <a href="#" class="px-10 py-2 bg-[#2e94a4] text-white rounded-full hover:bg-[#46e6ff]  ">Login</a>
       </div>
