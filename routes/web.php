@@ -28,3 +28,7 @@ Route::get('/edukasi', function () {
 Route::get('/admin-dashboard/menu', function () {
     return view('admin.dashboard.menu.tes');
 });
+
+Route::get('/', [pagecontroller::class, 'homepage']);
+
+Route::get('/store', [pagecontroller::class, 'store']);
