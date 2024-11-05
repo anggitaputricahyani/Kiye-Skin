@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\AuthController; 
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PageAdminController;
+
+
 
 
 /*
@@ -34,9 +37,15 @@ Route::get('/register', [RegisterController::class, 'showRegisterForm']);
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register.form');
 
 
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
 
 
+// Route to display the admin page
+Route::get('/admin/pageadmin', [PageAdminController::class, 'index'])->name('page.admin')->middleware('auth');
+
+// Route to handle form submission
+Route::post('/admin/pageadmin', [PageAdminController::class, 'handleForm'])->name('page.admin.submit')->middleware('guest'); // Use guest middleware for login
 
 
 Route::get('/about', function () {
