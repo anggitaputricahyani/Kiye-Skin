@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageAdminController;
+use App\Http\Controllers\hometestController;
 
 
 
@@ -79,4 +80,8 @@ Route::get('/store', [PageController::class, 'store']);
 
 Route::get('/store', function () {
     return view('client.dashboard.store');
+});
+
+Route::get('/test', function () {
+    return view('client.dashboard.hometest'); 
 });

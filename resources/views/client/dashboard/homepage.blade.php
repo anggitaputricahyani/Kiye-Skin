@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store</title>
+    <title>Kiye-Skin</title>
     @vite(['resources/css/app.css', 'resources/js/app.js']) 
 </head>
 @extends('client.dashboard.navbar')   
@@ -29,14 +29,14 @@
 
       <div class="mt-10 flex flex-wrap gap-4 text-center pt-0 -ml-20">
         <a
-          href="#"
+          href="/test"
           class="block w-full rounded bg-[#2e94a4] px-12 py-3 ml-20 text-sm  font-medium text-white shadow hover:bg-[#46e6ff] focus:outline-none focus:ring active:bg-[#46e6ff]] sm:w-auto "
         >
           Check Kulit Anda
         </a>
 
         <a
-          href="#"
+          href="/store"
           class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-[#2e94a4] shadow hover:text-[#46e6ff] focus:outline-none focus:ring active:text-[#46e6ff] sm:w-auto"
         >
           Shop Now
@@ -106,7 +106,9 @@
               <h2 class="text-2xl font-bold mb-8 text-center">Test Sekarang</h2>
               <p class="text-gray-600 mb-4 text-center">loLorem Ipsum Dolor Sit Amet Consectetur. Risus Pellentesque Cursus Maecenas Quis Fames Cursus. Tellus Pellentesque Nulla Placerat Eget Lacus Aliquet In Consequat Dictumst. Sit Ac Pellentesque Nam Tellus Faucibus In Sed. Aliquam Ultrices Elementum Auctor Aliquet Risus.</p>
               <div class="ml-52 mt-8"> <!-- Added mt-8 for margin-top -->
-                  <button class="bg-[#2e94a4] hover:bg-[#0D7C66] text-white font-bold py-2 px-4 -full">Mulai Test</button>
+                  <button>
+                    <a href="/test" class="bg-[#2e94a4] hover:bg-[#0D7C66] text-white font-bold py-2 px-4 -full">Mulai test</a>
+                  </button>
               </div>
           </div>
           
