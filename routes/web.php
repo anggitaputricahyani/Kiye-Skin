@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\AuthController; 
@@ -27,14 +28,16 @@ Route::get('/', function () {
     return view('client.dashboard.homepage'); 
 });
 
+Route::get('/home', function () {
+    return view('client.dashboard.homepage'); 
+});
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login'); 
 
 Route::get('/client.dashboard.homepage', [DashboardController::class, 'index'])->name('homepage');
 
 
-Route::get('/register', [RegisterController::class, 'showRegisterForm']);
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register.form');
+
 
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -46,6 +49,15 @@ Route::get('/admin/pageadmin', [PageAdminController::class, 'index'])->name('pag
 
 // Route to handle form submission
 Route::post('/admin/pageadmin', [PageAdminController::class, 'handleForm'])->name('page.admin.submit')->middleware('guest'); // Use guest middleware for login
+
+// Route untuk Login
+Route::get('/login', [LoginUserController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginUserController::class, 'login']);
+
+
+// Route untuk Register
+Route::get('/register', [LoginUserController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [LoginUserController::class, 'register'])->name('SubmitRegister');
 
 
 Route::get('/about', function () {

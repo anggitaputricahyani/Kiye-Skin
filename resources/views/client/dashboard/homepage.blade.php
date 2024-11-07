@@ -42,7 +42,20 @@
       <a href="#" class="block text-white py-2">About Us</a>
       <a href="#" class="block text-white py-2">Store</a>
       <a href="#" class="block text-white py-2">Cek Kulit</a>
-      <a href="#" class="block text-white py-2 bg-blue-500 rounded mt-2 text-center">Login</a>
+      @auth
+                <div class="relative group">
+                  <button class="text-[#2e94a4] hover:text-[#46e6ff]">{{ Auth::user()->name }}</button>
+                  <div class="absolute hidden group-hover:block bg-white shadow-lg mt-2 rounded-md w-40">
+                    <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+                    <form action="/logout" method="POST">
+                      @csrf
+                      <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</button>
+                    </form>
+                  </div>
+                </div>
+              @else
+                <a href="/login" class="px-10 py-2 bg-[#2e94a4] text-white rounded-full hover:bg-[#46e6ff]">Login</a>
+              @endauth
     </div>
   </nav>
   

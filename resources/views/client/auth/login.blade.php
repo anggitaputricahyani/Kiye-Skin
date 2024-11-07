@@ -23,20 +23,38 @@
                 <button class="p-2 bg-white-100 rounded-full"><img src="{{ asset('assets/loginpict/facebook.png') }}" alt="Gambar facebook" class="w-8 h-8"></button>
             </div>
             <p class="text-gray-500 text-sm mb-4">Or Use Your Email Password</p>
+            
+            <!-- Display validation errors -->
+            @if($errors->any())
+                <div class="bg-red-500 text-white p-3 rounded mb-4 w-full">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            
             <!-- Input Fields -->
-            <input id="email" type="text" placeholder="Your Email" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-            <input id="password" type="password" placeholder="Password" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+            <form class="userlogin" method="POST" action="{{ route('login') }}">
+                @csrf
+                <input name="email" type="text" placeholder="Your Email" value="{{ old('email') }}" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                <input name="password" type="password" placeholder="Password" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
+                
+                <!-- Sign In Button -->
+                <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600">Sign In</button>
+            </form>
+           
             <a href="#" class="text-sm text-gray-500 mb-6 inline-block">Forgot Your Password?</a>
-            <!-- Sign In Button -->
-            <button onclick="login()" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600">Sign In</button>
         </div>
+        
         <!-- Right Side (Welcome Section) -->
         <div class="w-1/2 bg-teal-500 flex flex-col items-center justify-center p-8">
             <img src="{{ asset('assets/loginpict/skincare.jpg') }}" alt="Gambar skincare" class="w-61 mx-52">
             <h2 class="text-black text-2xl font-bold mb-4">Selamat Datang</h2>
             <p class="text-black text-center mb-6">Jika Anda belum memiliki akun, silakan daftar terlebih dahulu</p>
             <!-- Sign Up Button -->
-            <a href="{{ route('register.form') }}" class="border border-blue-500 text-blue-500 bg-transparent px-6 py-2 rounded-lg hover:bg-blue-500 hover:text-white">Sign Up</a>
+            <a href="{{ route('register') }}" class="border border-blue-500 text-blue-500 bg-transparent px-6 py-2 rounded-lg hover:bg-blue-500 hover:text-white">Sign Up</a>
         </div>
     </div>
 
@@ -44,24 +62,5 @@
         <p>&copy; 2024 Your Company Name. All rights reserved.</p>
         <p><a href="#" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="#" class="text-blue-400 hover:underline">Terms of Service</a></p>
     </footer>
-
-    <script>
-        function login() {
-            // Ambil nilai dari input email dan password
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Cek jika email dan password diisi
-            if (email && password) {
-                // Di sini Anda bisa menambahkan logika autentikasi, misalnya menggunakan AJAX untuk memverifikasi kredensial
-                // Saat ini, kita hanya menampilkan alert dan mengarahkan pengguna ke halaman dashboard
-                alert("Login Berhasil");
-                // Redirect ke halaman dashboard
-                window.location.href = "/"; 
-            } else {
-                alert("Harap isi email dan password.");
-            }
-        }
-    </script>
 </body>
 </html>

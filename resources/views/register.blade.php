@@ -25,25 +25,19 @@
                 <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
 
                 <!-- Input Fields for Registration -->
-                <div class="flex gap-4 mb-4 w-full">
-                    <input type="text" id="firstName" placeholder="Nama Depan" class="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                    <input type="text" id="lastName" placeholder="Nama Belakang" class="w-1/2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                </div>
-                <input type="email" id="email" placeholder="Email" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                <input type="password" id="password" placeholder="Password" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                <form class="RegistUser" action="{{ route('SubmitRegister') }}" method="POST">
+                    @csrf
+                    <input type="text" name="name" id="name" placeholder="Nama" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                    <input type="email" name="email" id="email" placeholder="Email" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                    <input type="password" name="password" id="password" placeholder="Password" class="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
 
-                <!-- Register Button with Validation -->
-                <button onclick="validateForm()" class="w-full bg-blue-500 text-white p-3 rounded-lg mb-4 hover:bg-blue-600">Buat Akun</button>
-
-                <!-- Success Message -->
-                <div id="successMessage" class="hidden text-green-500 text-center mb-4">
-                    Kamu berhasil membuat akun! Mengarahkan ke halaman Login...
-                </div>
-
+                    <!-- Register Button with Validation -->
+                    <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-lg mb-4 hover:bg-blue-600">Buat Akun</button>
+                </form>
                 <!-- Link to Login Page -->
                 <p class="text-center text-gray-500 text-sm">
                     Kembali ke halaman 
-                    <button onclick="window.location='{{ route('login') }}'" class="text-blue-500 hover:text-blue-700 underline">Login</button>
+                    <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700 underline">Login</a>
                 </p>
             </div>
         </div>
@@ -56,32 +50,5 @@
         </div>
     </footer>
 
-    <script>
-        function validateForm() {
-            // Get input values
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Check if any field is empty
-            if (!firstName || !lastName || !email || !password) {
-                alert('Mohon isi semua data sebelum mendaftar.');
-            } else {
-                showSuccessMessage();
-            }
-        }
-
-        function showSuccessMessage() {
-            // Show success message
-            const messageDiv = document.getElementById('successMessage');
-            messageDiv.classList.remove('hidden'); // Remove the hidden class
-
-            // Redirect to login page after 3 seconds
-            setTimeout(() => {
-                window.location.href = '{{ route('login') }}';
-            }, 3000);
-        }
-    </script>
 </body>
 </html>
