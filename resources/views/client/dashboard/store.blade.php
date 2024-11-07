@@ -6,40 +6,9 @@
     <title>Store</title>
     @vite(['resources/css/app.css', 'resources/js/app.js']) 
 </head>
+@extends('client.dashboard.navbar') 
 <body>
-    <nav class="p-4 bg-white fixed top-0 left-0 w-full shadow-md z-20">
-        <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo dan Nama Website -->
-            <div class="flex items-center space-x-2">
-                <img src="https://via.placeholder.com/40" alt="Logo" class="w-10 h-10 rounded-full">
-                <span class="text-black text-2xl font-bold">KIYESKIN</span>
-            </div>
-            <!-- Tautan Navigasi -->
-            <div class="hidden md:flex space-x-6 text-xl">
-                <a href="{{ url('/') }}" class="text-[#2e94a4] hover:text-[#46e6ff]">Home</a>
-                <a href="{{ url('/#about-us') }}" class="text-[#2e94a4] hover:text-[#46e6ff]">About Us</a>
-                <a href="#" class="text-[#2e94a4] hover:text-[#46e6ff]">Store</a>
-                <a href="#" class="text-[#2e94a4] font-bold hover:text-blue-400">Cek Kulit</a>
-                <a href="#" class="px-10 py-2 bg-[#2e94a4] text-white rounded-full hover:bg-[#46e6ff] -mt-2">Login</a>
-            </div>
-            <!-- Tombol Menu Mobile -->
-            <button class="md:hidden text-black focus:outline-none" id="menu-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </div>
-        <!-- Menu Mobile -->
-        <div class="md:hidden bg-gray-800 p-4 hidden" id="menu">
-            <a href="#" class="block text-white py-2">Home</a>
-            <a href="#" class="block text-white py-2">About Us</a>
-            <a href="#" class="block text-white py-2">Store</a>
-            <a href="#" class="block text-white py-2">Cek Kulit</a>
-            <a href="#" class="block text-white py-2 bg-blue-500 rounded mt-2 text-center">Login</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
+        <!-- Hero Section -->
     <section id="home" class="pt-24 h-screen flex items-center justify-center text-center text-white relative">
         <!-- Background Image -->
         <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('{{ asset('assets/img/gambar200.jpg') }}'); filter: brightness(0.5);"></div>
