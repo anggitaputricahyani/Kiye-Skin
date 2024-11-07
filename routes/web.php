@@ -59,6 +59,9 @@ Route::post('/login', [LoginUserController::class, 'login']);
 Route::get('/register', [LoginUserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [LoginUserController::class, 'register'])->name('SubmitRegister');
 
+// Route untuk Logout
+// Route untuk Logout
+Route::post('/logout', [LoginUserController::class, 'logout'])->name('logout');
 
 Route::get('/about', function () {
     return view('about');
