@@ -10,13 +10,15 @@
     <div class="flex w-[800px] bg-blue-40 border-2 border-white rounded-lg shadow-lg overflow-hidden mx-auto my-auto">
         <!-- Left Side (Login Form) -->
         <div class="w-1/2 p-8 flex flex-col items-center">
+
             <!-- Home Icon and Title Centered -->
             <div class="flex flex-col items-center mb-6">
-                <button class="p-2 bg-gray-200 rounded-full mb-4">
+                <a href="/" class="p-2 bg-gray-200 rounded-full mb-4">
                     <img src="{{ asset('assets/loginpict/logo.png') }}" alt="Gambar google" class="w-10 h-10">
-                </button>
+                </a>                
                 <h2 class="text-2xl font-bold">Masuk</h2>
             </div>
+
             <!-- Social Login Buttons -->
             <div class="flex gap-4 mb-6">
                 <button class="p-2 bg-white-100 rounded-full"><img src="{{ asset('assets/loginpict/google.png') }}" alt="Gambar google" class="w-8 h-8"></button>
