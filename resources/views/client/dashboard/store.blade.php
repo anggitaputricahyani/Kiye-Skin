@@ -26,17 +26,25 @@
         <div class="text-center">
             <h1 class="text-3xl font-bold">Produk Populer</h1>
             <p class="mt-2">Beli Produk skincare sesuai kebutuhan kulit anda</p>
+            <div class=" pt-6 flex justify-center space-x-11  ">
+                <a href="" class="px-8 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a] "> Kulit Kering</a>
+                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]  "> Kulit berminyak</a>
+                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]   "> Kulit berjerawat</a>
+            </div>
+
         </div>
+
+        
         <!-- Produk List -->
-        <div class="flex flex-wrap mx-10" id="produk-list">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-16" id="produk-list">
             <!-- Card Produk -->
-            <div class="produk-card relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/2 lg:w-1/3 p-4">
+            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4 ">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
                     <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
-                        <p class="text-slate-800 text-xl font-semibold">Sunscreen Kiyeskin</p>
+                   <a href="/detailproduk" class="text-slate-800 text-xl font-semibold">Sunscreen Kiyeskin</a>
                         <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
                     </div>
                     <p class="text-slate-600 leading-normal font-light">
@@ -55,13 +63,13 @@
             </div>
 
 
-            <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
+            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
                     <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
-                        <p class="text-slate-800 text-xl font-semibold">Sunscreen Kiyeskin</p>
+                        <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
                         <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
                     </div>
                     <p class="text-slate-600 leading-normal font-light">
@@ -79,13 +87,13 @@
                 </div>
             </div>
 
-            <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
+            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
                     <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
-                        <p class="text-slate-800 text-xl font-semibold">Sunscreen Kiyeskin</p>
+                    <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
                         <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
                     </div>
                     <p class="text-slate-600 leading-normal font-light">
@@ -103,13 +111,13 @@
                 </div>
             </div>
 
-            <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
+            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
                     <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
-                        <p class="text-slate-800 text-xl font-semibold">Sunscreen Kiyeskin</p>
+                    <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
                         <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
                     </div>
                     <p class="text-slate-600 leading-normal font-light">
@@ -127,13 +135,13 @@
                 </div>
             </div>
 
-            <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full md:w-1/3 p-4">
+            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
                 <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
                     <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
                 </div>
                 <div class="p-4">
                     <div class="mb-2 flex items-center justify-between">
-                        <p class="text-slate-800 text-xl font-semibold">Sunscreen Kiyeskin</p>
+                    <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
                         <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
                     </div>
                     <p class="text-slate-600 leading-normal font-light">
@@ -141,11 +149,11 @@
                     </p>
                     @auth
                         <button class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
+                            Lihat Deskripsi1
                         </button>
                     @else
                         <button onclick="showLoginModal()" class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
+                            beli sekarang
                         </button>
                     @endauth
                 </div>

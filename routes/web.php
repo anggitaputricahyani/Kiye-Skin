@@ -8,6 +8,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageAdminController;
 use App\Http\Controllers\hometestController;
+use App\Http\Controllers\detailprodukController;
+
 
 
 
@@ -84,4 +86,8 @@ Route::get('/store', function () {
 
 Route::get('/test', function () {
     return view('client.dashboard.hometest'); 
+});
+
+Route::get('/detailproduk', function () {
+    return view('client.dashboard.detailProduk'); 
 });
