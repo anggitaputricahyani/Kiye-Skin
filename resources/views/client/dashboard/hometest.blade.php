@@ -19,7 +19,7 @@
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, voluptates, rem maxime unde, omnis veritatis fuga laboriosam aliquid quisquam molestias qui officia eius! Cum recusandae vero odio, est error cupiditate Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus natus minus sint, reiciendis ex, facilis dolore nihil consequatur aspernatur maiores molestiaee, commodi similique! Eveniet.
             </p>
             <div class="flex justify-center pt-6">
-                <a href="javascript:void(0);" onclick="checkLoginStatus()" class="bg-[#2e94a4] rounded-md text-white py-2 px-8 text-sm font-bold md:px-16">Test Sekarang</a>
+                <a href="/tes" onclick="checkLoginStatus()" class="bg-[#2e94a4] rounded-md text-white py-2 px-8 text-sm font-bold md:px-16">Test Sekarang</a>
             </div>
         </div>
     </section>

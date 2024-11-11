@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageAdminController;
+use App\Http\Controllers\client\QuestionnaireController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\hometestController;
 use App\Http\Controllers\detailprodukController;
 
@@ -43,8 +45,13 @@ Route::get('/client.dashboard.homepage', [DashboardController::class, 'index'])-
 
 
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
+
+//Route LoginAdmin
+Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login');
+
+
+Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.loginform');
 
 
 // Route to display the admin page
@@ -54,6 +61,7 @@ Route::get('/admin/pageadmin', [PageAdminController::class, 'index'])->name('pag
 Route::post('/admin/pageadmin', [PageAdminController::class, 'handleForm'])->name('page.admin.submit')->middleware('guest'); // Use guest middleware for login
 
 // Route untuk Login
+
 Route::get('/login', [LoginUserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginUserController::class, 'login']);
 
@@ -62,9 +70,16 @@ Route::post('/login', [LoginUserController::class, 'login']);
 Route::get('/register', [LoginUserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [LoginUserController::class, 'register'])->name('SubmitRegister');
 
-// Route untuk Logout
+
 // Route untuk Logout
 Route::post('/logout', [LoginUserController::class, 'logout'])->name('logout');
+
+// Route untuk Quisioner
+Route::middleware('auth')->group(function () {
+Route::get('/tes', [QuestionnaireController::class, 'show'])->name('questionnaire.show');
+Route::post('/tes', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
+Route::get('/questionnaire/result', [QuestionnaireController::class, 'result'])->name('questionnaire.result');
+});
 
 Route::get('/about', function () {
     return view('about');
@@ -84,7 +99,7 @@ Route::get('/store', function () {
     return view('client.dashboard.store');
 });
 
-Route::get('/test', function () {
+Route::get('/hometest', function () {
     return view('client.dashboard.hometest'); 
 });
 

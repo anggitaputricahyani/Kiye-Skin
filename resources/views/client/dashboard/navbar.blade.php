@@ -21,7 +21,7 @@
             <a href="/home" class="text-[#2e94a4] hover:text-[#46e6ff]">Home</a>
             <a href="{{ url('/#about-us') }}" class="text-[#2e94a4] hover:text-[#46e6ff]">About Us</a>
             <a href="/store" class="text-[#2e94a4] hover:text-[#46e6ff]">Store</a>
-            <a href="/test" class="text-[#2e94a4] hover:text-[#46e6ff]">Skin Check</a>
+            <a href="/hometest" class="text-[#2e94a4] hover:text-[#46e6ff]">Skin Check</a>
 
 
             @auth

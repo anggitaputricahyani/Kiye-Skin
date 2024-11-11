@@ -29,7 +29,7 @@
 
       <div class="mt-10 flex flex-wrap gap-4 text-center pt-0 -ml-20">
         <a
-          href="/test"
+          href="/hometest"
           class="block w-full rounded bg-[#2e94a4] px-12 py-3 ml-20 text-sm  font-medium text-white shadow hover:bg-[#46e6ff] focus:outline-none focus:ring active:bg-[#46e6ff]] sm:w-auto "
         >
           Check Kulit Anda
