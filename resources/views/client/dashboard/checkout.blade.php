@@ -251,25 +251,21 @@
                         document.getElementById("bankDropdown").classList.add("hidden");
                     }
 
-
-
-
-
                      // Tangani klik tombol "Buat Pesanan"
-    document.getElementById('orderButton').addEventListener('click', function() {
-        // Tampilkan pop-up setelah klik tombol
-        document.getElementById('successPopup').classList.remove('hidden');
-    });
+                document.getElementById('orderButton').addEventListener('click', function() {
+                    // Tampilkan pop-up setelah klik tombol
+                    document.getElementById('successPopup').classList.remove('hidden');
+                });
 
-    // Menangani penutupan pop-up dan pengalihan halaman
-    document.getElementById('closePopup').addEventListener('click', function() {
-        // Sembunyikan pop-up
-        document.getElementById('successPopup').classList.add('hidden');
-        
-        // Arahkan ke halaman utama setelah pop-up ditutup
-        window.location.href = '/';
-    });
-                </script>                
+                // Menangani penutupan pop-up dan pengalihan halaman
+                document.getElementById('closePopup').addEventListener('click', function() {
+                    // Sembunyikan pop-up
+                    document.getElementById('successPopup').classList.add('hidden');
+                    
+                    // Arahkan ke halaman utama setelah pop-up ditutup
+                    window.location.href = '/';
+                });
+                            </script>                
 
 
 </body>
