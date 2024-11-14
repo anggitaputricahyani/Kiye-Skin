@@ -22,6 +22,7 @@
             <a href="{{ url('/#about-us') }}" class="text-[#2e94a4] hover:text-[#46e6ff]">About Us</a>
             <a href="/store" class="text-[#2e94a4] hover:text-[#46e6ff]">Store</a>
             <a href="/hometest" class="text-[#2e94a4] hover:text-[#46e6ff]">Skin Check</a>
+            
 
 
             @auth
@@ -77,6 +78,16 @@
     </div>
 </div>
 
+
+        <button class="md:hidden text-white focus:outline-none" id="menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </div>
+</header>
+
+<!-- JavaScript untuk Cart -->
 <script>
     // Menampilkan pop-up login
     function showLoginPopup() {
@@ -100,15 +111,6 @@
         }
     }
 </script>
-
-
-        <button class="md:hidden text-white focus:outline-none" id="menu-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-        </button>
-    </div>
-</header>
 
 <!-- JavaScript untuk Dropdown -->
 <script>

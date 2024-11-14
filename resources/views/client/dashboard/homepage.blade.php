@@ -107,7 +107,7 @@
               <p class="text-gray-600 mb-4 text-center">loLorem Ipsum Dolor Sit Amet Consectetur. Risus Pellentesque Cursus Maecenas Quis Fames Cursus. Tellus Pellentesque Nulla Placerat Eget Lacus Aliquet In Consequat Dictumst. Sit Ac Pellentesque Nam Tellus Faucibus In Sed. Aliquam Ultrices Elementum Auctor Aliquet Risus.</p>
               <div class="ml-52 mt-8"> <!-- Added mt-8 for margin-top -->
                   <button>
-                    <a href="/test" class="bg-[#2e94a4] hover:bg-[#0D7C66] text-white font-bold py-2 px-4 -full">Mulai test</a>
+                    <a href="/hometest" class="bg-[#2e94a4] hover:bg-[#0D7C66] text-white font-bold py-2 px-4 -full">Mulai test</a>
                   </button>
               </div>
           </div>

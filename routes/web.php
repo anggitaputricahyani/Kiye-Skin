@@ -11,6 +11,8 @@ use App\Http\Controllers\client\QuestionnaireController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\hometestController;
 use App\Http\Controllers\detailprodukController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 
 
@@ -29,24 +31,6 @@ use App\Http\Controllers\detailprodukController;
 
 
 
-Route::get('/', function () {
-    return view('client.dashboard.homepage'); 
-});
-
-Route::get('/home', function () {
-    return view('client.dashboard.homepage'); 
-});
-
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login'); 
-
-Route::get('/client.dashboard.homepage', [DashboardController::class, 'index'])->name('homepage');
-
-
-
-
-
-
-
 //Route LoginAdmin
 Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login');
 
@@ -61,7 +45,6 @@ Route::get('/admin/pageadmin', [PageAdminController::class, 'index'])->name('pag
 Route::post('/admin/pageadmin', [PageAdminController::class, 'handleForm'])->name('page.admin.submit')->middleware('guest'); // Use guest middleware for login
 
 // Route untuk Login
-
 Route::get('/login', [LoginUserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginUserController::class, 'login']);
 
@@ -106,3 +89,23 @@ Route::get('/hometest', function () {
 Route::get('/detailproduk', function () {
     return view('client.dashboard.detailProduk'); 
 });
+
+Route::get('/', function () {
+    return view('client.dashboard.homepage'); 
+});
+
+Route::get('/home', function () {
+    return view('client.dashboard.homepage'); 
+});
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login'); 
+
+Route::get('/client.dashboard.homepage', [DashboardController::class, 'index'])->name('homepage');
+
+
+//route untuk cart
+Route::get('/cart', function () {
+    return view('client.dashboard.cart');
+});
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
