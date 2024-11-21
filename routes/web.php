@@ -13,6 +13,7 @@ use App\Http\Controllers\hometestController;
 use App\Http\Controllers\detailprodukController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\produkController;
 
 
 
@@ -109,3 +110,14 @@ Route::get('/cart', function () {
 });
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+Route::get('/produks', function () {
+    return view('admin.dashboard.menu.tambahProduk'); 
+});
+
+
+Route::post('/produks', [ProdukController::class, 'store'])->name('produks.store');
+
+Route::get('/admin/dashboard/menu/tambah-produk', [\App\Http\Controllers\Admin\ProdukController::class, 'create'])
+    ->name('admin.dashboard.menu.tambahProduk');
+

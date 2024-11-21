@@ -22,7 +22,7 @@ class DashboardController extends Controller
         return view('admin.dashboard.menu.tes', compact('pin'));
     }
 
-    public function sdq()
+    public function sdq ()
     {
         $data = InstrumenSDQ::all();
         return view('admin.dashboard.menu.sdq', compact('data'));
@@ -34,8 +34,8 @@ class DashboardController extends Controller
         return view('admin.dashboard.menu.srq', compact('data'));
     }
 
-    public function report(){
+    public function tambahProduk(){
 
-        return view('admin.dashboard.menu.report');
+        return views('admin.dashboard.menu.tambahProduk');
     }
 }
