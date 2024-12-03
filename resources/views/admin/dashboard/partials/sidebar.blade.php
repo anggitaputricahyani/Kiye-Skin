@@ -12,7 +12,7 @@
         <li class="sidebar-title">Kelola Produk</li>
 
         <li class="sidebar-item {{ (request()->is('v1/product')) ? 'active' : '' }}">
-            <a href="" class='sidebar-link'>
+            <a href="{{ route('admin.dashboard.menu.Produk.list')}}" class='sidebar-link'>
                 <i class="bi bi-box2-fill"></i>
                 <span>List Produk</span>
             </a>

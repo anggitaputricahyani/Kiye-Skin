@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
-            $table->integer('nomor');
             $table->string('nama_produk');
             $table->float('harga');
+            $table->enum('skin_type',['Kering(Dry)', 'Berminyak(Oily)', 'Normal_Skin', 'Kombinasi_skin(Dry_Oily)', 'Sensitif_skin(sensitive_skin)'])->default('Kering(Dry)');;
+            $table->enum('kategori',['Serum', 'Moisturizer', 'Sunscreen','Facial_wash','Toner'])->default('Serum');;
             $table->integer('stok');
             $table->text('deskripsi') ->nullable();
-            $table->string('image');
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

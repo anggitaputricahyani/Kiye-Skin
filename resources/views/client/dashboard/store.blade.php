@@ -27,140 +27,39 @@
             <h1 class="text-3xl font-bold">Produk Populer</h1>
             <p class="mt-2">Beli Produk skincare sesuai kebutuhan kulit anda</p>
             <div class=" pt-6 flex justify-center space-x-11  ">
-                <a href="" class="px-8 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a] "> Kulit Kering</a>
-                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]  "> Kulit berminyak</a>
-                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]   "> Kulit berjerawat</a>
+                <a href="" class="px-8 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a] "> Serum</a>
+                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]  "> Moisturizer</a>
+                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]   "> SunScreen</a>
+                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]   "> Facial Wash</a>
+                <a href="" class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a]   "> Toner</a>
             </div>
 
         </div>
 
         
         <!-- Produk List -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-16" id="produk-list">
-            <!-- Card Produk -->
-            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4 ">
-                <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
-                </div>
-                <div class="p-4">
-                    <div class="mb-2 flex items-center justify-between">
-                   <a href="/detailproduk" class="text-slate-800 text-xl font-semibold">Sunscreen Kiyeskin</a>
-                        <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
-                    </div>
-                    <p class="text-slate-600 leading-normal font-light">
-                        Debitis placeat ratione ad unde inventore laboriosam itaque, dolor dignissimos numquam eius dicta asperiores quia.
-                    </p>
-                    @auth
-                        <button class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @else
-                        <button onclick="showLoginModal()" class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @endauth
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8" id="produk-list">
+    @foreach ($produks as $produk)
+        <div class="bg-white shadow-md rounded-md overflow-hidden">
+        @if ($produk->gambar)
+            <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama_produk }}" style="width: 150px;">
+        @else
+            <p>Gambar tidak tersedia</p>
+        @endif
+            <div class="p-4">
+                <h3 class="text-lg font-bold text-gray-800">{{ $produk->nama_produk }}</h3>
+                <p class="text-sm text-gray-600 mt-2">{{ Str::limit($produk->deskripsi, 100, '...') }}</p>
+                <p class="text-lg font-semibold text-cyan-600 mt-4">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                <div class="mt-4 flex-col">
+                    <a href="#" class="bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700">Masukan keranjang</a>
+                    <a href="#" class="bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700">Beli Sekarang</a>
                 </div>
             </div>
-
-
-            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
-                <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
-                </div>
-                <div class="p-4">
-                    <div class="mb-2 flex items-center justify-between">
-                        <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
-                        <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
-                    </div>
-                    <p class="text-slate-600 leading-normal font-light">
-                        Debitis placeat ratione ad unde inventore laboriosam itaque, dolor dignissimos numquam eius dicta asperiores quia.
-                    </p>
-                    @auth
-                        <button class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @else
-                        <button onclick="showLoginModal()" class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @endauth
-                </div>
-            </div>
-
-            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
-                <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
-                </div>
-                <div class="p-4">
-                    <div class="mb-2 flex items-center justify-between">
-                    <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
-                        <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
-                    </div>
-                    <p class="text-slate-600 leading-normal font-light">
-                        Debitis placeat ratione ad unde inventore laboriosam itaque, dolor dignissimos numquam eius dicta asperiores quia.
-                    </p>
-                    @auth
-                        <button class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @else
-                        <button onclick="showLoginModal()" class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @endauth
-                </div>
-            </div>
-
-            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
-                <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
-                </div>
-                <div class="p-4">
-                    <div class="mb-2 flex items-center justify-between">
-                    <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
-                        <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
-                    </div>
-                    <p class="text-slate-600 leading-normal font-light">
-                        Debitis placeat ratione ad unde inventore laboriosam itaque, dolor dignissimos numquam eius dicta asperiores quia.
-                    </p>
-                    @auth
-                        <button class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @else
-                        <button onclick="showLoginModal()" class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi
-                        </button>
-                    @endauth
-                </div>
-            </div>
-
-            <div class="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg p-4">
-                <div class="relative h-96 overflow-hidden rounded-xl bg-clip-border">
-                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="card-image" class="h-full w-full object-cover rounded-md" />
-                </div>
-                <div class="p-4">
-                    <div class="mb-2 flex items-center justify-between">
-                    <a href="/detailproduk" class="text-slate-800 text-xl font-semibold"> Sunscreen Kiyeskin</a>
-                        <p class="text-cyan-600 text-xl font-semibold">Rp.95.000</p>
-                    </div>
-                    <p class="text-slate-600 leading-normal font-light">
-                        Debitis placeat ratione ad unde inventore laboriosam itaque, dolor dignissimos numquam eius dicta asperiores quia.
-                    </p>
-                    @auth
-                        <button class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            Lihat Deskripsi1
-                        </button>
-                    @else
-                        <button onclick="showLoginModal()" class="rounded-md mt-6 bg-cyan-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700">
-                            beli sekarang
-                        </button>
-                    @endauth
-                </div>
-            </div>
-
-            
         </div>
+    @endforeach
+</div>
+
+        
     </section>
 
     <!-- Login Modal -->

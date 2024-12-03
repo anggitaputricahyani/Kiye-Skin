@@ -14,6 +14,7 @@ use App\Http\Controllers\detailprodukController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\produkController;
+use App\Http\Controllers\admin\ListProdukController;
 
 
 
@@ -112,12 +113,25 @@ Route::get('/cart', function () {
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::get('/produks', function () {
-    return view('admin.dashboard.menu.tambahProduk'); 
+    return view('admin.dashboard.menu.Produk.tambahProduk'); 
 });
 
 
 Route::post('/produks', [ProdukController::class, 'store'])->name('produks.store');
 
 Route::get('/admin/dashboard/menu/tambah-produk', [\App\Http\Controllers\Admin\ProdukController::class, 'create'])
-    ->name('admin.dashboard.menu.tambahProduk');
+    ->name('admin.dashboard.menu.Produk.tambahProduk');
 
+Route::get('/admin/dashboard/menu/list', [\App\Http\Controllers\Admin\ListProdukController::class, 'index'])
+    ->name('admin.dashboard.menu.Produk.list');
+
+
+Route::resource('product', App\Http\Controllers\admin\ListProdukController::class);
+Route::resource('list', App\Http\Controllers\admin\ListProdukController::class);
+
+Route::get('/list/{id}/edit', [ListProdukController::class, 'edit'])->name('list.update'); // Rute untuk form edit
+Route::patch('/list/{id}', [ListProdukController::class, 'update'])->name('list.update'); // Rute untuk update data
+
+
+ 
+    
