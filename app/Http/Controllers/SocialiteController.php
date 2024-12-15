@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite; 
+use App\Models\User; 
 
 class SocialiteController extends Controller
 {
     public function redirect() {
         
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')
+        ->with(['prompt' => 'select_account']) // Tambahkan parameter ini
+        ->redirect();
 
     }
 
@@ -17,7 +21,7 @@ class SocialiteController extends Controller
 
         $userFromDb = User::where('google_id' , $userFromGoogle->getId())->first();
 
-        if($userFromDb){
+        if(!$userFromDb){
             $userFromDb = new User();
             $userFromDb->email = $userFromGoogle->getEmail();
             $userFromDb->google_id = $userFromGoogle->getId();
