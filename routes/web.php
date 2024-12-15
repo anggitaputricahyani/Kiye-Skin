@@ -8,6 +8,7 @@ use App\Http\Controllers\PageAdminController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,9 @@ Route::get('/cart', function () {
 });
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+Route::get('redirect', [SocialiteController::class, 'redirect'])->name('redirect')->middleware('guest');
+
+Route::get('callback', [SocialiteController::class, 'callback'])->name('callback')->middleware('guest');
+
+Route::get('logout', [SocialiteController::class, 'logout'])->name('logout')->middleware('guest');

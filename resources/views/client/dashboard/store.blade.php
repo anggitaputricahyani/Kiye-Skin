@@ -45,9 +45,9 @@
                     class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a] 
               {{ request('kategori') == 'SunScreen' ? 'bg-[#46e6ff]' : '' }}">SunScreen</a>
 
-                <a href="{{ route('store', ['kategori' => 'Facial Wash']) }}"
+                <a href="{{ route('store', ['kategori' => 'Facial_wash']) }}"
                     class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a] 
-              {{ request('kategori') == 'Facial Wash' ? 'bg-[#46e6ff]' : '' }}">Facial Wash</a>
+              {{ request('kategori') == 'Facial_wash' ? 'bg-[#46e6ff]' : '' }}">Facial Wash</a>
 
                 <a href="{{ route('store', ['kategori' => 'Toner']) }}"
                     class="px-4 py-2 outline outline-[#2e94a4] rounded-full font-bold text-[#1e6e7a] 

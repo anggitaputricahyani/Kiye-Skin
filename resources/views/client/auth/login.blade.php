@@ -21,9 +21,13 @@
 
             <!-- Social Login Buttons -->
             <div class="flex gap-4 mb-6">
-                <button class="p-2 bg-white-100 rounded-full"><img src="{{ asset('assets/loginpict/google.png') }}" alt="Gambar google" class="w-8 h-8"></button>
-                <button class="p-2 bg-white-100 rounded-full"><img src="{{ asset('assets/loginpict/facebook.png') }}" alt="Gambar facebook" class="w-8 h-8"></button>
-            </div>
+    <a href="{{ route('redirect') }}" class="p-2 bg-white-100 rounded-full">
+        <img src="{{ asset('assets/loginpict/google.png') }}" alt="Gambar google" class="w-8 h-8">
+    </a>
+    <a href="#" class="p-2 bg-white-100 rounded-full">
+        <img src="{{ asset('assets/loginpict/facebook.png') }}" alt="Gambar facebook" class="w-8 h-8">
+    </a>
+</div>
             <p class="text-gray-500 text-sm mb-4">Or Use Your Email Password</p>
             
             <!-- Display validation errors -->
