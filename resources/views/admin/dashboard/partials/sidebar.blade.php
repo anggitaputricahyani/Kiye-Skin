@@ -9,23 +9,13 @@
             </a>
         </li>
 
-        <li class="sidebar-title">Kelola Produk</li>
-
         <li class="sidebar-item {{ (request()->is('v1/product')) ? 'active' : '' }}">
-            <a href="{{ route('admin.dashboard.menu.Produk.list')}}" class='sidebar-link'>
+            <a href="{{ route('produk.index')}}" class='sidebar-link'>
                 <i class="bi bi-box2-fill"></i>
-                <span>List Produk</span>
+                <span>Produk</span>
             </a>
         </li>
 
-        <li class="sidebar-item {{ (request()->is('v1/product/create')) ? 'active' : '' }}">
-            <a href="{{ url('produks') }}" class='sidebar-link'>
-                <i class="bi bi-box-arrow-in-up"></i>
-                <span>Tambah Produk</span>
-            </a>
-        </li>
-
-        
         <li class="sidebar-title">Kelola Kuisioner</li>
 
         <li class="sidebar-item {{ (request()->is('v1/product')) ? 'active' : '' }}">
@@ -34,23 +24,23 @@
                 <span>Pertanyaan</span>
             </a>
         </li>
-        
+
 
         <li class="sidebar-title">Laporan</li>
 
-<li class="sidebar-item {{ (request()->is('v1/product')) ? 'active' : '' }}">
-    <a href="" class='sidebar-link'>
-        <i class="bi bi-box2-fill"></i>
-        <span>Laporan Penjualan</span>
-    </a>
-</li>
+        <li class="sidebar-item {{ (request()->is('v1/product')) ? 'active' : '' }}">
+            <a href="" class='sidebar-link'>
+                <i class="bi bi-box2-fill"></i>
+                <span>Laporan Penjualan</span>
+            </a>
+        </li>
 
-<li class="sidebar-item {{ (request()->is('v1/product/create')) ? 'active' : '' }}">
-    <a href="" class='sidebar-link'>
-        <i class="bi bi-box-arrow-in-up"></i>
-        <span>Laporan Hasil Test</span>
-    </a>
-</li>
+        <li class="sidebar-item {{ (request()->is('v1/product/create')) ? 'active' : '' }}">
+            <a href="" class='sidebar-link'>
+                <i class="bi bi-box-arrow-in-up"></i>
+                <span>Laporan Hasil Test</span>
+            </a>
+        </li>
 
 
 

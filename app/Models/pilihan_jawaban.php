@@ -11,6 +11,5 @@ class pilihan_jawaban extends Model
     use HasFactory;
     protected $fillable = [
         'jawaban',
-        
     ];
 }

@@ -10,6 +10,5 @@ class kuisioner extends Model
     use HasFactory;
     protected $fillable = [
         'pertanyaan',
-        
     ];
 }

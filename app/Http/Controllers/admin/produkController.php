@@ -5,40 +5,34 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Produk;
 use Illuminate\Http\Request;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
-class produkController extends Controller
+class ProdukController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        # membuat variabel untuk menampung data product
-        $data = produk::query()
-            ->get();
+        $query = Produk::query(); // Query dasar
 
-        # mengembalikan ke dalam template dengan membawa variabel
-        return view('admin.dashboard.menu.tambahProduk', compact('data'));
+        // Filter berdasarkan kategori jika parameter kategori ada
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        // Filter berdasarkan pencarian nama produk
+        if ($request->filled('search')) {
+            $query->where('nama_produk', 'like', '%' . $request->search . '%');
+        }
+
+        $produks = $query->get(); // Eksekusi query
+        $categories = Produk::select('kategori')->distinct()->get(); // Ambil daftar kategori unik
+
+        return view('admin.produk.index', compact('produks', 'categories'));
     }
-
-    public function storeView()
-{
-    $produks = Produk::all(); // Ambil semua data produk
-    return view('client.dashboard.store', compact('produks')); // Kirim data ke view
-}
-
-public function show($id)
-{
-    $produk = Produk::findOrFail($id);  // Menemukan produk
-    dd($produk->gambar);  // Kode ini akan menghentikan eksekusi, kode setelahnya tidak akan dijalankan
-    return view('produk.show', compact('produkS'));  // Tidak bisa dijangkau
-}
-
-
-
 
 
     /**
@@ -48,8 +42,7 @@ public function show($id)
      */
     public function create()
     {
-        # membuat template create product
-        return view('admin.dashboard.menu.Produk.tambahProduk');
+        return view('admin.produk.create');
     }
 
     /**
@@ -60,44 +53,122 @@ public function show($id)
      */
     public function store(Request $request)
     {
-        // validasi request dari form 
+        // Validasi input
         $request->validate([
             'nama_produk' => 'required',
             'harga' => 'required|numeric',
-            'skin_type' => 'required|in:Kering(Dry),Berminyak(Oily),Normal_Skin,Kombinasi_skin(Dry_Oily)',
+            'skin_type' => 'required|in:Dry,Oily,Normal_Skin,Dry_Oily,Sensitive_Skin',
             'kategori' => 'required|in:Serum,Moisturizer,Sunscreen,Facial_wash,Toner',
             'stok' => 'required|numeric',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-
-        ], [
-            'nama_produk.required' => 'Wajib di isi',
-            'harga.required' => 'Wajib di isi',
-            'harga.numeric' => 'Harga Wajib Angka',
-            'skin_type.required' => 'Wajib di isi',
-            'kategori.required' => 'Wajib di isi',
-            'stok.required' => 'Wajib di isi',
-            'stok.numeric' => 'Stok Wajib Angka',
-            'deskripsi.required' => 'Wajib di isi',
-            'gambar.required'=>'wajib di isi'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-    
-        
-        produk::create([
+        // Simpan gambar jika ada
+        $gambarPath = null;
+        if ($request->hasFile('gambar')) {
+            $gambarPath = $request->file('gambar')->store('produk', 'public');
+        }
+
+        // Simpan data produk
+        Produk::create([
             'nama_produk' => $request->nama_produk,
             'harga' => $request->harga,
             'skin_type' => $request->skin_type,
             'kategori' => $request->kategori,
             'stok' => $request->stok,
             'deskripsi' => $request->deskripsi,
-            'gambar'=> $request->gambarpath,
-            //'slug' => str_replace(' ', '-', $request->title)
+            'gambar' => $gambarPath,
         ]);
-        # akhir query
 
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
+    }
 
-        // balikan ke halaman list product
-        return redirect()->route('admin.dashboard.menu.Produk.tambahProduk')->with('success', 'Produk   Berhasil di tambahkan');
-    }    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $produk = Produk::findOrFail($id);
+        return view('admin.produk.show', compact('produk'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $produk = Produk::findOrFail($id);
+        return view('admin.produk.edit', compact('produk'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_produk' => 'required',
+            'harga' => 'required|numeric',
+            'skin_type' => 'required|in:Dry,Oily,Normal_Skin,Dry_Oily,Sensitive_Skin',
+            'kategori' => 'required|in:Serum,Moisturizer,Sunscreen,Facial_wash,Toner',
+            'stok' => 'required|numeric',
+            'deskripsi' => 'required',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+        ]);
+
+        $produk = Produk::findOrFail($id);
+
+        $gambarPath = null;
+        // Update gambar jika ada
+        if ($request->hasFile('gambar')) {
+            if ($produk->gambar) {
+                Storage::disk('public')->delete($produk->gambar);
+            }
+            $gambarPath = $request->file('gambar')->store('produk', 'public');
+        }
+
+        // Update data lainnya
+        $produk->update([
+            'nama_produk' => $request->nama_produk,
+            'harga' => $request->harga,
+            'skin_type' => $request->skin_type,
+            'kategori' => $request->kategori,
+            'stok' => $request->stok,
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $gambarPath,
+        ]);
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $produk = Produk::findOrFail($id);
+
+        // Hapus gambar jika ada
+        if ($produk->gambar) {
+            Storage::disk('public')->delete($produk->gambar);
+        }
+
+        $produk->delete();
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
+    }
 }
