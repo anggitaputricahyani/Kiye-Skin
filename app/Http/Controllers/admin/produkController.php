@@ -93,7 +93,7 @@ class ProdukController extends Controller
     public function show($id)
     {
         $produk = Produk::findOrFail($id);
-        return view('admin.produk.show', compact('produk'));
+        return view('client.dashboard.detailproduk', compact('produk'));
     }
 
     /**
@@ -171,4 +171,6 @@ class ProdukController extends Controller
 
         return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
     }
+
+    
 }

@@ -70,12 +70,11 @@
                 <p>Gambar tidak tersedia</p>
                 @endif
                 <div class="p-4">
-                    <h3 class="text-lg font-bold text-gray-800">{{ $produk->nama_produk }}</h3>
+                    <a href="{{ route('produk.show', $produk->id) }}"><h3 class="text-lg font-bold text-gray-800">{{ $produk->nama_produk }}</h3></a>
                     <p class="text-sm text-gray-600 mt-2">{{ Str::limit($produk->deskripsi, 100, '...') }}</p>
                     <p class="text-lg font-semibold text-cyan-600 mt-4">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
                     <div class="mt-4 flex-col">
-                        <a href="#" class="bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700">Masukan keranjang</a>
-                        <a href="#" class="bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700">Beli Sekarang</a>
+                     
                     </div>
                 </div>
             </div>

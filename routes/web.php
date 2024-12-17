@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\PageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PageAdminController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\CheckoutController;
@@ -60,9 +61,8 @@ Route::get('/hometest', function () {
     return view('client.dashboard.hometest');
 });
 
-Route::get('/detailproduk', function () {
-    return view('client.dashboard.detailProduk');
-});
+Route::get('/detailproduk/{id}', [ProdukController::class, 'show'])->name('produk.show');
+
 
 Route::get('/', function () {
     return view('client.dashboard.homepage');
@@ -89,3 +89,7 @@ Route::get('redirect', [SocialiteController::class, 'redirect'])->name('redirect
 Route::get('callback', [SocialiteController::class, 'callback'])->name('callback')->middleware('guest');
 
 Route::get('logout', [SocialiteController::class, 'logout'])->name('logout')->middleware('guest');
+
+
+
+
