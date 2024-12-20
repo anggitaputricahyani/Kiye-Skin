@@ -10,13 +10,13 @@
 <body>
     <section class="flex flex-col md:flex-row h-screen">
         <div class="flex items-center justify-center w-full md:w-1/2 h-auto">
-            <img src="{{ asset('assets/img/gambar3.png') }}" alt="Test Gambar" class="object-cover w-full h-auto">
+            <img src="{{ asset('assets/img/gambar3.png') }}" alt="Test Gambar" class="object-cover w-full h-auto max-h-full">
         </div>
 
         <div class="w-full md:w-1/2 flex flex-col justify-center items-center px-6 py-12 md:py-48">
             <h1 class="text-3xl md:text-5xl font-bold text-center text-[#2e94a4]">Test Kesehatan Kulit Anda</h1>
             <p class="text-center pt-2 font-light max-w-xl mx-auto mt-4">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, voluptates, rem maxime unde, omnis veritatis fuga laboriosam aliquid quisquam molestias qui officia eius! Cum recusandae vero odio, est error cupiditate Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus natus minus sint, reiciendis ex, facilis dolore nihil consequatur aspernatur maiores molestiaee, commodi similique! Eveniet.
+            Cek kondisi kulit wajah Anda sekarang juga! Dengan teknologi kami, Anda bisa mengetahui permasalahan kulit dan mendapatkan rekomendasi perawatan yang sesuai. Jangan tunggu lebih lama, mulai langkah menuju kulit sehat dan bercahaya!
             </p>
             <div class="flex justify-center pt-6">
                 <a href="/tes" onclick="checkLoginStatus()" class="bg-[#2e94a4] rounded-md text-white py-2 px-8 text-sm font-bold md:px-16">Test Sekarang</a>
@@ -62,7 +62,7 @@
         }
     </script>
 
-<footer class="bg-gray-800 text-white py-4 w-full mt-8">
+<footer class="bg-gray-800 text-white py-4 w-full mt-8 absolute bottom-0">
     <div class="container mx-auto text-center">
         <p class="text-sm">&copy; 2024 Nama Website. All rights reserved.</p>
         <p class="text-sm mt-1">Dibuat dengan <span class="text-red-500">❤</span> oleh Tim Kami</p>

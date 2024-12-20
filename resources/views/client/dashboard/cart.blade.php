@@ -5,174 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiye-Skin Shopping Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-    <header class="bg-orange-500 p-4 flex justify-between items-center">
-        <a href="/" class="text-blue text-xl font-bold">Kiye-Skin</a>
-        <input type="text" id="search-placeholder" placeholder="Nikmati Diskon Kiye-Skin : 15% lebih hemat" class="rounded-full px-4 py-2 w-1/3">
-        <div class="flex items-center space-x-4">
-            <button id="notification-text" class="text-black">Notifikasi</button>
-            <a href="https://wa.me/6288224154244" id="help-text" class="text-black">Bantuan</a>
+    
+
+    <div class="h-screen bg-gray-100 pt-20">
+<!-- User Address Section -->
+<div class="mb-6 px-6 py-4 bg-white rounded-lg shadow-md">
+    <h2 class="text-lg font-bold text-gray-900">Alamat Pengiriman</h2>
+    <label for="address-input" class="block text-gray-700 mt-2">Masukkan Alamat:</label>
+    <textarea id="address-input" name="address" rows="3" class="mt-1 block w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Contoh: Jl. Contoh Alamat No. 123, Kota Contoh, Indonesia"></textarea>
+</div>
+
+
+        <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+        <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+            <div class="rounded-lg md:w-3/4">
+                @forelse ($keranjang as $item)
+                <!-- Cart Item -->
+                <!-- Cart Item -->
+<div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
+    <div class="w-full sm:w-40 sm:mr-4">
+        <img src="{{ asset('storage/' . $item->produk->gambar) }}" alt="{{ $item->produk->nama_produk }}"
+             class="w-full h-40 object-cover rounded-lg border" />
+    </div>
+    <div class="sm:flex sm:w-full sm:justify-between">
+        <div class="mt-5 sm:mt-0">
+            <h2 class="text-lg font-bold text-gray-900">{{ $item->produk->nama_produk }}</h2>
+            <p class="mt-1 text-xs text-gray-700">Kategori: {{ $item->produk->kategori }}</p>
         </div>
-    </header>
-        
-    <!-- Cart Items -->
-        <div class="container mx-auto p-6">
-            <h2 class="text-2xl font-bold mb-4">Keranjang Belanja</h2>
-            
-            <div class="bg-white rounded-lg shadow p-6 mb-4">
-                <div class="flex items-center mb-4">
-                    <input type="checkbox" class="mr-4 ml-2">
-                    
-                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="Product Image" class="w-20 h-20 object-cover mr-4">
-                    
-                    <div class="flex-1">
-                        <p id="product-name" class="font-bold">Sunscreen Eminem</p>
-                        <p id="product-description" class="text-gray-600">50 SPF dan cocok digunakan untuk tipe kulit apapun</p>
-                        <div class="flex items-center mt-2">
-                            <span class="text-red-500 font-bold mr-2" id="product-price">Rp133.500</span>
-                            <span class="line-through text-gray-500">Rp143.500</span>
-                            <span id="discount-label" class="bg-red-200 text-red-600 text-xs font-bold px-2 ml-2 rounded">Diskon 6%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-2">
-                        <button class="px-3 py-1 text-gray-700 bg-gray-200 rounded-l hover:bg-gray-300" onclick="decrement()"> - </button>
-                        <input type="text" id="kuantitas" value="1" class="w-12 text-center border border-gray-300 focus:outline-none" readonly>
-                        <button class="px-3 py-1 text-gray-700 bg-gray-200 rounded-r hover:bg-gray-300" onclick="increment()"> + </button>
-                    </div>
-                    
-                    <div class="text-right">
-                        <p class="text-xl font-bold" id="total-price">Rp133.500</p>
-                        <button onclick="removeItem()" class="text-red-500 mt-2">Hapus</button>
-                    </div>
-                </div>
-    
-                <div class="border-t pt-4 text-sm">
-                    <p id="voucher-info" class="mb-2">Tersedia Voucher Diskon s/d Rp12RB <a href="#" class="text-blue-500">Voucher Lainnya</a></p>
-                    <p id="free-shipping-info">Gratis Ongkir s/d Rp15.000 dengan min. belanja Rp0; Gratis Ongkir s/d Rp250.000 dengan min. belanja Rp3.000.000 <a href="#" class="text-blue-500">Pelajari lebih lanjut</a></p>
-                </div>
+        <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+            <div class="flex items-center border-gray-100">
+                <button onclick="updateCart({{ $item->produk_id }}, {{ $item->kuantitas - 1 }})" class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-white">-</button>
+                <input id="quantity-{{ $item->produk_id }}" class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number"
+                       value="{{ $item->kuantitas }}" min="1" readonly />
+                <button onclick="updateCart({{ $item->produk_id }}, {{ $item->kuantitas + 1 }})" class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-white">+</button>
             </div>
-
-
-             <!-- Cart Items -->
-
-            <div class="bg-white rounded-lg shadow p-6 mb-4">
-                <div class="flex items-center mb-4">
-                    <input type="checkbox" class="mr-4 ml-2">
-                    
-                    <img src="{{ asset('assets/img/produk.jpg') }}" alt="Product Image" class="w-20 h-20 object-cover mr-4">
-                    
-                    <div class="flex-1">
-                        <p id="product-name" class="font-bold">Sunscreen Eminem</p>
-                        <p id="product-description" class="text-gray-600">50 SPF dan cocok digunakan untuk tipe kulit apapun</p>
-                        <div class="flex items-center mt-2">
-                            <span class="text-red-500 font-bold mr-2" id="product-price">Rp133.500</span>
-                            <span class="line-through text-gray-500">Rp143.500</span>
-                            <span id="discount-label" class="bg-red-200 text-red-600 text-xs font-bold px-2 ml-2 rounded">Diskon 6%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-2">
-                        <button class="px-3 py-1 text-gray-700 bg-gray-200 rounded-l hover:bg-gray-300" onclick="decrement()"> - </button>
-                        <input type="text" id="kuantitas" value="1" class="w-12 text-center border border-gray-300 focus:outline-none" readonly>
-                        <button class="px-3 py-1 text-gray-700 bg-gray-200 rounded-r hover:bg-gray-300" onclick="increment()"> + </button>
-                    </div>
-                    
-                    <div class="text-right">
-                        <p class="text-xl font-bold" id="total-price">Rp133.500</p>
-                        <button onclick="removeItem()" class="text-red-500 mt-2">Hapus</button>
-                    </div>
-                </div>
-    
-                <div class="border-t pt-4 text-sm">
-                    <p id="voucher-info" class="mb-2">Tersedia Voucher Diskon s/d Rp12RB <a href="#" class="text-blue-500">Voucher Lainnya</a></p>
-                    <p id="free-shipping-info">Gratis Ongkir s/d Rp15.000 dengan min. belanja Rp0; Gratis Ongkir s/d Rp250.000 dengan min. belanja Rp3.000.000 <a href="#" class="text-blue-500">Pelajari lebih lanjut</a></p>
-                </div>
-            </div>
-
-        <!-- Checkout Section -->
-        <div class="bg-white rounded-lg shadow p-6">
-            <div class="flex items-center justify-between mb-4">
-                <div class="flex items-center space-x-2">
-                    <input type="checkbox" id="select-all-checkbox" onclick="toggleSelectAll()">
-                    <p id="select-all-text" class="text-sm-4">Pilih Semua</p>
-                </div>
-            </div>            
-            <div class="flex justify-between items-center text-xl font-bold">
-                <p id="total-text">Total (1 produk): Rp133.500</p>
-                <a href="{{ route('checkout') }}" id="checkout-button" class="bg-blue-500 text-black px-6 py-2 rounded">Checkout</a>
+            <div class="flex items-center space-x-4">
+                <p class="text-sm">Rp{{ number_format($item->produk->harga * $item->kuantitas, 0, ',', '.') }}</p>
+                <button onclick="removeFromCart({{ $item->produk_id }})" class="text-red-500 hover:text-red-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="h-5 w-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
         </div>
+    </div>
+</div>
 
-        
+                @empty
+                <p class="text-center text-gray-500">Keranjang Anda kosong</p>
+                @endforelse
+            </div>
+            <!-- Subtotal Section -->
+            <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-2/3">
+                <div class="mb-2 flex justify-between">
+                    <p class="text-gray-700">Subtotal</p>
+                    <p class="text-gray-700">Rp{{ number_format($keranjang->sum(fn($item) => $item->produk->harga * $item->kuantitas), 0, ',', '.') }}</p>
+                </div>
+                <div class="flex justify-between">
+                    <p class="text-gray-700">Shipping</p>
+                    <p class="text-gray-700">Gratis</p>
+                </div>
+                <hr class="my-4" />
+                <div class="flex justify-between">
+                    <p class="text-lg font-bold">Total</p>
+                    <div>
+                        <p class="mb-1 text-lg font-bold">Rp{{ number_format($keranjang->sum(fn($item) => $item->produk->harga * $item->kuantitas), 0, ',', '.') }}</p>
+                        <p class="text-sm text-gray-700">Termasuk PPN</p>
+                    </div>
+                </div>
+                <button id="pay-button" data-total="{{ $keranjang->sum(fn($item) => $item->produk->harga * $item->kuantitas) }}" 
+                    class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">
+                    Bayar Sekarang
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+ 
 
     <script>
-// Increment and decrement functions
-function increment() {
-    const kuantitasInput = document.getElementById("kuantitas");
-    let kuantitas = parseInt(kuantitasInput.value, 10) || 0;
-    kuantitasInput.value = kuantitas + 1;
-    updateTotalPrice(kuantitas + 1);
-}
-
-function decrement() {
-    const kuantitasInput = document.getElementById("kuantitas");
-    let kuantitas = parseInt(kuantitasInput.value, 10) || 1;
-    if (kuantitas > 1) {
-        kuantitasInput.value = kuantitas - 1;
-        updateTotalPrice(kuantitas - 1);
-    }
-}
-
-// Optional: Toggle 'Pilih Semua' checkbox functionality
-function toggleSelectAll() {
-    const selectAllCheckbox = document.getElementById("select-all-checkbox");
-    const isChecked = selectAllCheckbox.checked;
-    // You can add functionality to select/deselect all items here
-}
-
-    // Java Script tambah kuranng
-function increment() {
-        const kuantitasInput = document.getElementById("kuantitas");
-        let kuantitas = parseInt(kuantitasInput.value, 10) || 0;
-        kuantitasInput.value = kuantitas + 1;
-    }
-
-    function decrement() {
-        const kuantitasInput = document.getElementById("kuantitas");
-        let kuantitas = parseInt(kuantitasInput.value, 10) || 1;
-        if (kuantitas > 1) {
-            kuantitasInput.value = kuantitas - 1;
-        }
-    }
-
-        // Java Script update total price and total discount
-        function updateTotal() {
-            const checkboxes = document.querySelectorAll('.item-checkbox');
-            let totalPrice = 0;
-            let totalDiscount = 0;
-            let totalItems = 0;
-
-            // Loop through all checkboxes
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    totalItems++;
-                    totalPrice += parseInt(checkbox.getAttribute('data-price'));
-                    totalDiscount += parseInt(checkbox.getAttribute('data-discount'));
-                }
-            });
-
-            // Update the total price and discount display
-            document.getElementById('total-items').innerText = `Total (${totalItems} produk): Rp${totalPrice}`;
-            document.getElementById('total-savings').innerText = `Hemat Rp${totalDiscount}`;
+        function updateCart(productId, newQuantity) {
+            axios.post(`/keranjang/update/${productId}`, { kuantitas: newQuantity })
+                .then(response => {
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
 
-        // Add event listeners to each checkbox
-        document.querySelectorAll('.item-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', updateTotal);
-        });
+        function removeFromCart(productId) {
+            axios.delete(`/keranjang/hapus/${productId}`)
+                .then(response => location.reload())
+                .catch(error => console.error(error));
+        }
+
+        function checkoutCart() {
+            axios.post(`/keranjang/checkout`)
+                .then(response => {
+                    alert('Checkout berhasil!');
+                    location.reload();
+                })
+                .catch(error => console.error(error));
+        }
+        
     </script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <script>
+        document.getElementById('pay-button').onclick = function () {
+    const totalAmount = document.getElementById('pay-button').getAttribute('data-total'); // Ambil total dari atribut data
+    
+    fetch('/payment/snap-token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            amount: parseInt(totalAmount), // Pastikan nilai dikirim dalam bentuk angka
+            name: "Nama Pelanggan",
+            email: "email@example.com"
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        snap.pay(data.snap_token, {
+            onSuccess: function(result){
+                alert("Pembayaran berhasil!");
+                console.log(result);
+            },
+            onPending: function(result){
+                alert("Menunggu pembayaran...");
+                console.log(result);
+            },
+            onError: function(result){
+                alert("Pembayaran gagal.");
+                console.log(result);
+            }
+        });
+    })
+    .catch(error => console.error(error));
+};
+
+</script>
 
 </body>
 </html>

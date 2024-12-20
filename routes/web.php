@@ -11,6 +11,10 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\SocialiteController;
 
+// =====otak atik urip=====// 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,10 +81,6 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 // Route::get('/client.dashboard.homepage', [DashboardController::class, 'index'])->name('homepage');
 
 
-//route untuk cart
-Route::get('/cart', function () {
-    return view('client.dashboard.cart');
-});
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
@@ -90,6 +90,26 @@ Route::get('callback', [SocialiteController::class, 'callback'])->name('callback
 
 Route::get('logout', [SocialiteController::class, 'logout'])->name('logout')->middleware('guest');
 
+// =====otak atik urip=====// 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+});
+// yang di atas ini belom kelar
 
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+use App\Http\Controllers\KeranjangProdukController;
+
+Route::middleware('auth')->group(function () {
+    Route::post('/keranjang/tambah/{produkId}', [KeranjangProdukController::class, 'tambahKeKeranjang'])->name('cart.add');
+    Route::post('/keranjang/kurangi/{produkId}', [KeranjangProdukController::class, 'kurangiDariKeranjang'])->name('keranjang.kurangi');
+    Route::post('/keranjang/update/{produkId}', [KeranjangProdukController::class, 'updateKeranjang'])->name('keranjang.update');
+    Route::delete('/keranjang/hapus/{produkId}', [KeranjangProdukController::class, 'hapusKeranjang'])->name('keranjang.hapus');
+    Route::get('/cart', [KeranjangProdukController::class, 'lihatKeranjang'])->name('keranjang.lihat');
+    Route::post('/keranjang/checkout', [KeranjangProdukController::class, 'checkoutKeranjang'])->name('keranjang.checkout');
+});
+
+Route::post('/payment/snap-token', [PaymentController::class, 'createSnapToken']);
 
 

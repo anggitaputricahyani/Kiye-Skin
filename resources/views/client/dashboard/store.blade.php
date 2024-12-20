@@ -55,17 +55,15 @@
 
                 
             </div>
-
-
         </div>
 
 
         <!-- Produk List -->
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8" id="produk-list">
             @forelse ($produks as $produk)
-            <div class="bg-white shadow-md rounded-md overflow-hidden">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                 @if ($produk->gambar)
-                <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama_produk }}" style="width: 550px;">
+                <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama_produk }}">
                 @else
                 <p>Gambar tidak tersedia</p>
                 @endif

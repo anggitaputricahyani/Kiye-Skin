@@ -3,49 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    public function cart()
+    public function addToCart(Request $request) // Hanya gunakan Request $request
     {
-        // Mengambil data produk yang ada di dalam keranjang (misalnya dari session)
-        $cartItems = session('cart', []); // Asumsi data produk disimpan di session 'cart'
-    
-        // Menghitung total harga produk dalam keranjang
-        $totalPrice = 0;
-        foreach ($cartItems as $item) {
-            $totalPrice += $item['price'] * $item['quantity'];
-        }
-    
-        return view('client.cart', compact('cartItems', 'totalPrice'));
-    }
+        // Validasi data
+        $request->validate([
+            'product_id' => 'required|integer',
+            'name' => 'required|string',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer|min:1',
+        ]);
 
-    public function addToCart($id)
-{
-    $produk = Produk::findOrFail($id);
-
-    // Ambil data produk
-    $cart = session()->get('cart', []);
-
-    // Jika produk sudah ada di keranjang, update kuantitasnya
-    if(isset($cart[$id])) {
-        $cart[$id]['quantity']++;
-    } else {
-        $cart[$id] = [
-            'name' => $produk->nama_produk,
-            'description' => $produk->deskripsi,
-            'price' => $produk->harga,
-            'original_price' => $produk->harga_asli,
-            'image' => $produk->gambar,
-            'quantity' => 1
+        // Data produk yang ditambahkan ke cart
+        $product = [
+            'id' => $request->product_id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
         ];
+
+        // Ambil cart dari session
+        $cart = Session::get('cart', []);
+
+        // Periksa apakah produk sudah ada di cart
+        $index = array_search($product['id'], array_column($cart, 'id'));
+        if ($index !== false) {
+            // Jika sudah ada, tambahkan quantity
+            $cart[$index]['quantity'] += $product['quantity'];
+        } else {
+            // Jika belum, tambahkan produk baru
+            $cart[] = $product;
+        }
+
+        // Simpan cart kembali ke session
+        Session::put('cart', $cart);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Produk berhasil ditambahkan ke keranjang.',
+            'cart' => $cart,
+        ]);
     }
-
-    // Simpan ke session
-    session()->put('cart', $cart);
-
-    return redirect()->route('cart');
-}
-
-    
 }
