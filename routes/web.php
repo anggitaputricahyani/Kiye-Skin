@@ -112,4 +112,8 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/payment/snap-token', [PaymentController::class, 'createSnapToken']);
 
+// =====otak atik Suweg=====// 
 
+Route::post('/payment/create-order', [PaymentController::class, 'createOrder']);
+
+Route::post('/payment/validate', [PaymentController::class, 'notificationHandler']);
