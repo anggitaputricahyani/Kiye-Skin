@@ -67,10 +67,10 @@ class PaymentController extends Controller
 
         if ($notification->transaction_status == "pending") {
             $order->status = 'PENDING';
-        } elseif ($notification->transaction_status == "settlement"){
+        } elseif ($notification->transaction_status == "settlement" && $notification->status_code == "200"){
             $order->status = 'PAID';
-        } elseif ($notification->transaction_status == "capture"){
-            $order->status = 'UNPAID';
+        } elseif ($notification->transaction_status == "capture" && $notification->status_code == "200"){
+            $order->status = 'PAID';
         } else {
             $order->status = 'CANCELLED';
         }
